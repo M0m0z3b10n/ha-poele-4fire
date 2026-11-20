@@ -2,7 +2,16 @@
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=M0m0z3b10n&repository=ha-poele-4fire&category=integration)
 
-Composant personnalise pour piloter en local via Wi-Fi les poeles a granules 4Fire et equipements bases sur l'electronique TiEmme Elettronica (cartes SY250 / protocoles 2WL et 2WC sur le port TCP 80) piloté par l'application 4Heat.
+Composant personnalisé pour piloter en local via Wi-Fi les poêles à granulés 4Fire et équipements basés sur l'électronique TiEmme Elettronica (cartes SY250 / protocoles 2WL et 2WC sur le port TCP 80) pilotés par l'application 4Heat.
+
+## Matériel testé & Compatibilité
+
+Ce module a été testé et validé sur :
+- **Poêle à granulés :** **BlackLine T9**
+- **Module Wi-Fi :** **4HEAT** (de **TiEmme Elettronica**)
+- **Application mobile d'origine :** 4Heat / 4Fire
+
+Il est compatible avec les poêles à granulés équipés d'une carte électronique TiEmme Elettronica (ex: SY250) et d'un module Wi-Fi répondant aux commandes locales sur le port 80 (protocole 2WL / 2WC).
 
 ## Fonctionnalites
 
