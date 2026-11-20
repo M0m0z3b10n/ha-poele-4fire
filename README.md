@@ -1,5 +1,7 @@
 # Integration Home Assistant - Poele 4Fire / HottoH (TiEmme)
 
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=M0m0z3b10n&repository=ha-poele-4fire&category=integration)
+
 Composant personnalise pour piloter en local via Wi-Fi les poeles a granules 4Fire et equipements bases sur l'electronique TiEmme Elettronica (cartes SY250 / protocoles 2WL et 2WC sur le port TCP 80) piloté par l'application 4Heat.
 
 ## Fonctionnalites
@@ -21,10 +23,16 @@ Composant personnalise pour piloter en local via Wi-Fi les poeles a granules 4Fi
 
 ### Option 1 : Via HACS (Recommande)
 
+#### Installation en un clic :
+Cliquez simplement sur ce bouton pour ouvrir directement le dépôt dans votre HACS :
+
+[![Ajouter le dépôt à HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=M0m0z3b10n&repository=ha-poele-4fire&category=integration)
+
+#### Installation manuelle dans HACS :
 1. Ouvrez **HACS** dans votre Home Assistant.
-2. Cliquez sur les 3 points en haut a droite > **Depots personnalises**.
-3. Ajoutez l'URL de votre depot GitHub avec la categorie **Integration**.
-4. Cliquez sur **Telecharger**, puis redemarrez Home Assistant.
+2. Cliquez sur les 3 points en haut à droite > **Dépôts personnalisés**.
+3. Ajoutez l'URL : `https://github.com/M0m0z3b10n/ha-poele-4fire` avec la catégorie **Intégration**.
+4. Cliquez sur **Télécharger**, puis redémarrez Home Assistant.
 
 ### Option 2 : Installation manuelle
 
