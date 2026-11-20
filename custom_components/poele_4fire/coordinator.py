@@ -5,6 +5,7 @@ import logging
 import socket
 from datetime import timedelta
 
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
@@ -102,12 +103,13 @@ class PoeleClient:
 class PoeleDataUpdateCoordinator(DataUpdateCoordinator):
     """Coordinateur gérant les mises à jour périodiques."""
 
-    def __init__(self, hass: HomeAssistant, client: PoeleClient, name: str):
+    def __init__(self, hass: HomeAssistant, client: PoeleClient, name: str, entry: ConfigEntry | None = None):
         super().__init__(
             hass,
             _LOGGER,
             name=name,
             update_interval=timedelta(seconds=SCAN_INTERVAL_SECONDS),
+            config_entry=entry,
         )
         self.client = client
         self.device_name = name

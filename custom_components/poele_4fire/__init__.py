@@ -1,7 +1,7 @@
 """Intégration Home Assistant pour poêle 4Fire / HottoH (TiEmme)."""
 import logging
 
-from homeassistant.config_entries import ConfigEntry
+from homeassistant.config_entries import SOURCE_IMPORT, ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import ConfigType
@@ -15,32 +15,23 @@ PLATFORMS: list[Platform] = [Platform.CLIMATE, Platform.SENSOR]
 
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
-    """Configuration YAML (rétrocompatibilité)."""
+    """Configuration YAML (import automatique vers ConfigEntry)."""
     hass.data.setdefault(DOMAIN, {})
 
     if DOMAIN in config:
-        conf = config[DOMAIN]
-        host = conf.get(CONF_HOST, DEFAULT_HOST)
-        port = conf.get(CONF_PORT, DEFAULT_PORT)
-        name = conf.get(CONF_NAME, DEFAULT_NAME)
-
-        client = PoeleClient(host, port)
-        coordinator = PoeleDataUpdateCoordinator(hass, client, name)
-        await coordinator.async_config_entry_first_refresh()
-
-        hass.data[DOMAIN]["coordinator"] = coordinator
-        hass.data[DOMAIN]["client"] = client
-
-        for platform in PLATFORMS:
-            hass.async_create_task(
-                hass.helpers.discovery.async_load_platform(platform, DOMAIN, {}, config)
+        hass.async_create_task(
+            hass.config_entries.flow.async_init(
+                DOMAIN,
+                context={"source": SOURCE_IMPORT},
+                data=config[DOMAIN] or {},
             )
+        )
 
     return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Configuration via Config Flow UI."""
+    """Configuration via Config Flow UI ou YAML importé."""
     hass.data.setdefault(DOMAIN, {})
 
     host = entry.data.get(CONF_HOST, DEFAULT_HOST)
@@ -48,7 +39,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     name = entry.data.get(CONF_NAME, DEFAULT_NAME)
 
     client = PoeleClient(host, port)
-    coordinator = PoeleDataUpdateCoordinator(hass, client, name)
+    coordinator = PoeleDataUpdateCoordinator(hass, client, name, entry=entry)
 
     await coordinator.async_config_entry_first_refresh()
 
