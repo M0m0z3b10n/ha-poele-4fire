@@ -77,19 +77,21 @@ class Poele4FireClimate(CoordinatorEntity[PoeleDataUpdateCoordinator], ClimateEn
     @property
     def hvac_mode(self) -> HVACMode:
         code = self._client.data.get("code_etat", 0)
-        # 0 = Éteint, 5 = Extinction, 7 = Veille, 8 = Alarme
-        if code in (0, 5, 7, 8):
+        # 0 = Éteint, 7 = Extinction, 8 = Sécurité, 9 = Alarme
+        if code in (0, 7, 8, 9):
             return HVACMode.OFF
         return HVACMode.HEAT
 
     @property
     def hvac_action(self) -> HVACAction:
         code = self._client.data.get("code_etat", 0)
-        if code in (4, 6):
+        if code in (4, 5, 6):
             return HVACAction.HEATING
         if code in (1, 2, 3):
             return HVACAction.PREHEATING
-        if code in (0, 5, 7, 8):
+        if code == 11:
+            return HVACAction.IDLE
+        if code in (0, 7, 8, 9):
             return HVACAction.OFF
         return HVACAction.IDLE
 
