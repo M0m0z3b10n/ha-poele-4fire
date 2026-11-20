@@ -37,6 +37,6 @@ Rendez-vous dans **Parametres** > **Appareils et services** > **Ajouter une inte
 2. Indiquez l'adresse IP locale de votre poele (ex: `192.168.0.5`) et le port (`80`).
 3. Validez : l'appareil et l'ensemble de ses entites sont crees automatiquement.
 
-## Licensce
+## Licence
 
 Distribué sous licence MIT.
