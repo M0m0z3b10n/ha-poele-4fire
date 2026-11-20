@@ -1,6 +1,6 @@
 # Integration Home Assistant - Poele 4Fire / HottoH (TiEmme)
 
-Composant personnalise pour piloter en local via Wi-Fi les poeles a granules 4Fire et equipements bases sur l'electronique TiEmme Elettronica (cartes SY250 / protocoles 2WL et 2WC sur le port TCP 80).
+Composant personnalise pour piloter en local via Wi-Fi les poeles a granules 4Fire et equipements bases sur l'electronique TiEmme Elettronica (cartes SY250 / protocoles 2WL et 2WC sur le port TCP 80) piloté par l'application 4Heat.
 
 ## Fonctionnalites
 
