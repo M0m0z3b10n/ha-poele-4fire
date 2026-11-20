@@ -1,7 +1,7 @@
 """Constantes pour l'intégration Poêle 4Fire."""
 
 DOMAIN = "poele_4fire"
-DEFAULT_NAME = "Poêle 4Fire"
+DEFAULT_NAME = "Poêle 4Heat (TiEmme) Wifi"
 DEFAULT_HOST = "192.168.0.5"
 DEFAULT_PORT = 80
 SCAN_INTERVAL_SECONDS = 20

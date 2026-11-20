@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="icon.png" alt="Logo Poêle 4Fire" width="128">
+  <img src="icon.png" alt="Logo Poêle 4Heat (TiEmme) Wifi" width="128">
 </p>
 
-# Intégration Home Assistant - Poêle 4Fire / HottoH (TiEmme)
+# Intégration Home Assistant - Poêle 4Heat (TiEmme) Wifi
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=M0m0z3b10n&repository=ha-poele-4fire&category=integration)
 

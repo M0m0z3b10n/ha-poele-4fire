@@ -2,7 +2,7 @@
   "config": {
     "step": {
       "user": {
-        "title": "4Fire Pellet Stove Setup",
+        "title": "4Heat (TiEmme) Wifi Stove Setup",
         "description": "Enter the local IP address and port of your stove's Wi-Fi module.",
         "data": {
           "host": "IP Address",

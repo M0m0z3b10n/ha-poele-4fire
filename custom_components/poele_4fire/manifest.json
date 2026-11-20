@@ -1,11 +1,11 @@
 {
   "domain": "poele_4fire",
-  "name": "Poêle 4Fire / HottoH",
+  "name": "Poêle 4Heat (TiEmme) Wifi",
   "codeowners": ["@M0m0z3b10n"],
   "config_flow": true,
   "documentation": "https://github.com/M0m0z3b10n/ha-poele-4fire",
   "issue_tracker": "https://github.com/M0m0z3b10n/ha-poele-4fire/issues",
   "integration_type": "device",
   "iot_class": "local_polling",
-  "version": "1.0.5"
+  "version": "1.0.6"
 }
