@@ -1,0 +1,21 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configuration du Poêle 4Fire",
+        "description": "Indiquez l'adresse IP locale et le port du module Wi-Fi de votre poêle.",
+        "data": {
+          "host": "Adresse IP",
+          "port": "Port",
+          "name": "Nom de l'appareil"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossible de se connecter au poêle. Vérifiez l'adresse IP et le port."
+    },
+    "abort": {
+      "already_configured": "Cet appareil est déjà configuré dans Home Assistant."
+    }
+  }
+}
