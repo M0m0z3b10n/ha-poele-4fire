@@ -17,24 +17,24 @@ Ce module a été testé et validé sur :
 
 Il est compatible avec les poêles à granulés équipés d'une carte électronique TiEmme Elettronica (ex: SY250) et d'un module Wi-Fi répondant aux commandes locales sur le port 80 (protocole 2WL / 2WC).
 
-## Fonctionnalites
+## Fonctionnalités
 
-- **Entite Climate (`climate.poele_4fire`)** :
-  - Reglage precis de la temperature de consigne au dixieme de degre (ex: 21.5 °C).
-  - Affichage en direct de la temperature ambiante mesuree par la sonde.
-  - Modes HVAC : `off` (Eteint) et `heat` (Allume / En chauffe).
-  - Actions detaillees : `preheating` (Controle, Chargement, Flamme), `heating` (Travail, Modulation), `off` (Eteint).
+- **Entité Climate (`climate.poele_4fire`)** :
+  - Réglage précis de la température de consigne au dixième de degré (ex: 21.5 °C).
+  - Affichage en direct de la température ambiante mesurée par la sonde.
+  - Modes HVAC : `off` (Éteint) et `heat` (Allumé / En chauffe).
+  - Actions détaillées : `preheating` (Contrôle, Chargement, Flamme), `heating` (Travail, Modulation), `off` (Éteint).
   - Support complet des cartes Lovelace et de la carte **Scheduler** (`supported_features: 385`).
 
-- **Capteurs dedies (`sensor`)** :
-  - Temperature des fumees (°C)
-  - Puissance active (ex: P1 a P5)
-  - Etat detaille (Prechauffage, Allumage, Modulation, etc.)
-  - Horloge interne du poele
+- **Capteurs dédiés (`sensor`)** :
+  - Température des fumées (°C)
+  - Puissance active (ex: P1 à P5)
+  - État détaillé (Préchauffage, Allumage, Modulation, Standby, etc.)
+  - Horloge interne du poêle
 
 ## Installation
 
-### Option 1 : Via HACS (Recommande)
+### Option 1 : Via HACS (Recommandé)
 
 #### Installation en un clic :
 Cliquez simplement sur ce bouton pour ouvrir directement le dépôt dans votre HACS :
@@ -49,14 +49,14 @@ Cliquez simplement sur ce bouton pour ouvrir directement le dépôt dans votre H
 
 ### Option 2 : Installation manuelle
 
-Copiez le dossier `custom_components/poele_4fire` dans le repertoire `config/custom_components/` de votre serveur Home Assistant, puis redemarrez Home Assistant.
+Copiez le dossier `custom_components/poele_4fire` dans le répertoire `config/custom_components/` de votre serveur Home Assistant, puis redémarrez Home Assistant.
 
 ## Configuration
 
-Rendez-vous dans **Parametres** > **Appareils et services** > **Ajouter une integration** :
-1. Recherchez **Poele 4Fire**.
-2. Indiquez l'adresse IP locale de votre poele (ex: `192.168.0.5`) et le port (`80`).
-3. Validez : l'appareil et l'ensemble de ses entites sont crees automatiquement.
+Rendez-vous dans **Paramètres** > **Appareils et services** > **Ajouter une intégration** :
+1. Recherchez **Poêle 4Heat (TiEmme) Wifi** (ou tapez `4heat`).
+2. Indiquez l'adresse IP locale de votre poêle (ex: `192.168.0.5`) et le port (`80`).
+3. Validez : l'appareil et l'ensemble de ses entités sont créés automatiquement.
 
 ## Licence
 
