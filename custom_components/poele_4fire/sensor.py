@@ -31,6 +31,7 @@ async def async_setup_entry(
         PoelePuissanceSensor(coordinator),
         PoeleEtatSensor(coordinator),
         PoeleHeureSensor(coordinator),
+        PoeleDerniereErreurSensor(coordinator),
     ])
 
 
@@ -48,6 +49,7 @@ async def async_setup_platform(
             PoelePuissanceSensor(coordinator),
             PoeleEtatSensor(coordinator),
             PoeleHeureSensor(coordinator),
+            PoeleDerniereErreurSensor(coordinator),
         ])
 
 
@@ -124,3 +126,34 @@ class PoeleHeureSensor(PoeleSensorBase):
     @property
     def native_value(self) -> str | None:
         return self._client.data.get("heure_poele")
+
+
+class PoeleDerniereErreurSensor(PoeleSensorBase):
+    """Capteur de la dernière erreur détectée sur le poêle."""
+
+    _attr_translation_key = "derniere_erreur"
+    _attr_name = "Dernière erreur"
+    _attr_icon = "mdi:alert-circle-outline"
+
+    def __init__(self, coordinator: PoeleDataUpdateCoordinator):
+        super().__init__(coordinator, "derniere_erreur")
+
+    @property
+    def native_value(self) -> str:
+        err = self._client.historique_erreurs
+        if not err:
+            return "Aucune erreur"
+        return err[0].get("libelle", "Erreur inconnue")
+
+    @property
+    def extra_state_attributes(self) -> dict:
+        err = self._client.historique_erreurs
+        if not err:
+            return {"historique": []}
+        return {
+            "date_heure": err[0].get("timestamp"),
+            "code_etat": err[0].get("code_etat"),
+            "description": err[0].get("description"),
+            "solution": err[0].get("solution"),
+            "historique": err,
+        }

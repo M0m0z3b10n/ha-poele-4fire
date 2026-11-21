@@ -3,14 +3,14 @@ import asyncio
 import json
 import logging
 import socket
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
-from .const import DOMAIN, ETATS_POELE, MAX_TEMP, MIN_TEMP, SCAN_INTERVAL_SECONDS
+from .const import CODES_ERREURS, DOMAIN, ETATS_POELE, MAX_HISTORIQUE_ERREURS, MAX_TEMP, MIN_TEMP, SCAN_INTERVAL_SECONDS
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -22,6 +22,8 @@ class PoeleClient:
         self.host = host
         self.port = port
         self._lock = asyncio.Lock()
+        self.historique_erreurs: list[dict] = []
+        self._dernier_code_etat: int = 0
         self.data = {
             "code_etat": 0,
             "etat": "Éteint",
@@ -78,7 +80,28 @@ class PoeleClient:
                 self.data["consigne_min"] = int(trame[10:14], 16) / 10.0
                 self.data["consigne_max"] = int(trame[14:18], 16) / 10.0
 
+        # Suivi des erreurs : on enregistre dès que le poêle passe en état d'alarme/sécurité
+        code = self.data["code_etat"]
+        if code in (8, 9) and self._dernier_code_etat not in (8, 9):
+            info = CODES_ERREURS.get(code, (f"Code {code}", "État inconnu", "Redémarrer le module WiFi"))
+            entree = {
+                "timestamp": datetime.now().isoformat(timespec="seconds"),
+                "code_etat": code,
+                "libelle": info[0],
+                "description": info[1],
+                "solution": info[2],
+            }
+            self.historique_erreurs.insert(0, entree)
+            self.historique_erreurs = self.historique_erreurs[:MAX_HISTORIQUE_ERREURS]
+            _LOGGER.warning("Poêle en alarme/sécurité — code_etat=%d (%s): %s", code, info[0], info[1])
+        self._dernier_code_etat = code
+
         return self.data
+
+    @property
+    def derniere_erreur(self) -> dict | None:
+        """Retourne la dernière erreur enregistrée, ou None."""
+        return self.historique_erreurs[0] if self.historique_erreurs else None
 
     async def async_set_temperature(self, temp: float):
         """Définit la température de consigne au dixième de degré (bridée à MAX_TEMP pour sécurité)."""
