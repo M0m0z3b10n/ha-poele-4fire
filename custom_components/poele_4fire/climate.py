@@ -15,7 +15,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DEFAULT_NAME, DOMAIN
+from .const import DEFAULT_NAME, DOMAIN, MAX_TEMP, MIN_TEMP
 from .coordinator import PoeleDataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
@@ -51,8 +51,8 @@ class Poele4FireClimate(CoordinatorEntity[PoeleDataUpdateCoordinator], ClimateEn
     _attr_temperature_unit = UnitOfTemperature.CELSIUS
     _attr_precision = PRECISION_TENTHS
     _attr_target_temperature_step = 0.1
-    _attr_min_temp = 10.0
-    _attr_max_temp = 40.0
+    _attr_min_temp = MIN_TEMP
+    _attr_max_temp = MAX_TEMP
     _attr_hvac_modes = [HVACMode.OFF, HVACMode.HEAT]
     _attr_supported_features = (
         ClimateEntityFeature.TARGET_TEMPERATURE

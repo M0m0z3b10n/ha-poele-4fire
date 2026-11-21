@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
-from .const import DOMAIN, ETATS_POELE, SCAN_INTERVAL_SECONDS
+from .const import DOMAIN, ETATS_POELE, MAX_TEMP, MIN_TEMP, SCAN_INTERVAL_SECONDS
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -81,8 +81,8 @@ class PoeleClient:
         return self.data
 
     async def async_set_temperature(self, temp: float):
-        """Définit la température de consigne au dixième de degré."""
-        val = max(10.0, min(40.0, temp))
+        """Définit la température de consigne au dixième de degré (bridée à MAX_TEMP pour sécurité)."""
+        val = max(MIN_TEMP, min(MAX_TEMP, temp))
         val_hex = f"{int(round(val * 10)):04x}"
         trame = f'["2WC","1","0512005a{val_hex}006401900001000100"]'.encode("utf-8")
         _LOGGER.debug("Envoi consigne au poêle: %.1f °C (%s)", val, trame)

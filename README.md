@@ -21,6 +21,7 @@ Il est compatible avec les poêles à granulés équipés d'une carte électroni
 
 - **Entité Climate (`climate.poele_4fire`)** :
   - Réglage précis de la température de consigne au dixième de degré (ex: 21.5 °C).
+  - **Butée logicielle de sécurité à 25 °C** : la consigne maximale dans Home Assistant est plafonnée à 25.0 °C (plage 10.0 °C à 25.0 °C) pour prévenir tout risque de surchauffe accidentelle ou fausse manipulation.
   - Affichage en direct de la température ambiante mesurée par la sonde.
   - Modes HVAC : `off` (Éteint) et `heat` (Allumé / En chauffe).
   - Actions détaillées : `preheating` (Contrôle, Chargement, Flamme), `heating` (Travail, Modulation), `off` (Éteint).
@@ -31,6 +32,14 @@ Il est compatible avec les poêles à granulés équipés d'une carte électroni
   - Puissance active (ex: P1 à P5)
   - État détaillé (Préchauffage, Allumage, Modulation, Standby, etc.)
   - Horloge interne du poêle
+
+## Sécurité & Butées thermiques
+
+Ce module met en œuvre une sécurité logicielle sur la consigne de chauffe :
+- **Butée logicielle Home Assistant (10.0 °C - 25.0 °C)** : Afin d'éviter qu'une fausse manipulation (sur smartphone, tablette murale ou automatisation tierce) ne demande une température excessive, l'interface et le service Home Assistant refusent tout réglage supérieur à **25.0 °C** (la carte mère du poêle accepte physiquement jusqu'à 40.0 °C).
+- **Sécurités physiques autonomes du poêle** : Indépendamment des commandes Wi-Fi ou Home Assistant, le poêle intègre ses propres dispositifs de protection usine :
+  - **Thermostat de sécurité à réarmement (Klixon)** : Coupe-circuit physique qui stoppe immédiatement la vis sans fin d'alimentation en granulés en cas de surchauffe interne.
+  - **Gestion des alarmes et des fumées par la carte TiEmme** : Déclenchement automatique de l'alarme et extinction de sécurité si la température des fumées dépasse les seuils limites du constructeur.
 
 ## Installation
 

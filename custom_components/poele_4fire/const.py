@@ -6,6 +6,10 @@ DEFAULT_HOST = "192.168.0.5"
 DEFAULT_PORT = 80
 SCAN_INTERVAL_SECONDS = 20
 
+# Butées de température de consigne (sécurité logicielle Home Assistant)
+MIN_TEMP = 10.0
+MAX_TEMP = 25.0  # Bridage de sécurité à 25 °C (la carte mère accepte jusqu'à 40 °C)
+
 CONF_HOST = "host"
 CONF_PORT = "port"
 CONF_NAME = "name"
